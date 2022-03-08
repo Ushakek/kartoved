@@ -16,15 +16,18 @@ ROOT_DIR = Path().cwd().parent
 # todo: Прочитать про base_dir и исправить
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-env = Env.read_env(ROOT_DIR.joinpath('.env'))
+env = Env(
+    DEBUG=(bool, False)
+)
+env.read_env(ROOT_DIR.joinpath('.env'))
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = env.get('SECRET_KEY')
+SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = env.get('DEBUG', True)
+DEBUG = env('DEBUG')
 
-ALLOWED_HOSTS = env.get('ALLOWED_HOSTS').split(' ')
+ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', default='*')
 
 
 # Application definition
@@ -75,12 +78,12 @@ WSGI_APPLICATION = 'kartoved.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': env.get('SQL_ENGINE', 'django.db.backends.sqlite3'),
-        'NAME': env.get('SQL_DATABASE', Path.joinpath(BASE_DIR, 'db.sqlite3')),
-        'USER': env.get('SQL_USER', 'kartoved'),
-        'PASSWORD': env.get('SQL_PASSWORD', '123'),
-        'HOST': env.get('SQL_HOST', 'localhost'),
-        'PORT': env.get('SQL_PORT', ''),
+        'ENGINE': env('SQL_ENGINE', default='django.db.backends.sqlite3'),
+        'NAME': env('SQL_DATABASE', default=Path.joinpath(BASE_DIR, 'db.sqlite3')),
+        'USER': env('SQL_USER', default='kartoved'),
+        'PASSWORD': env('SQL_PASSWORD', default='123'),
+        'HOST': env('SQL_HOST', default='localhost'),
+        'PORT': env('SQL_PORT', default=''),
     }
 }
 

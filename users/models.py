@@ -1,5 +1,5 @@
-from django.db import models
 from django.contrib.auth.models import User
+from django.db import models
 
 
 class UserProfile(models.Model):
@@ -15,6 +15,7 @@ class UserProfile(models.Model):
         ("MALE", "Мужской"),
         ("FEMALE", "Женский"),
         ("UNKNOWN", "Неизвестен"),
+        ("GEOLOG", "Геолог"),
     )
 
     user = models.OneToOneField(
@@ -26,7 +27,8 @@ class UserProfile(models.Model):
     user_status = models.CharField(
         'Статус пользователя',
         choices=STATUS_CHOICES,
-        default=WORKER
+        default=WORKER,
+        max_length=100,
     )
     full_name = models.CharField(
         'Полное имя',

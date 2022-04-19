@@ -1,10 +1,9 @@
 from django import forms
 import re
 from django.contrib.auth.models import User
-from django.utils import timezone
 
 from users.models import UserProfile
-from core.models import UserRegistrationRequest, UserRegistrationCode
+from core.models import UserRegistrationRequest
 
 
 class UserRegistrationRequestForm(forms.ModelForm):
@@ -61,7 +60,7 @@ class UserRegistrationRequestForm(forms.ModelForm):
         return password2
 
     def save(self, commit=True):
-        (registration_request, created) = UserRegistrationRequest.object.update_or_create(
+        (registration_request, created) = UserRegistrationRequest.objects.update_or_create(
             dict(username=self.cleaned_data['username'],
                  userfullname=self.cleaned_data['userfullname'],
                  email=self.cleaned_data['email'],

@@ -13,7 +13,7 @@ from rest_framework.schemas.views import SchemaView
 from rest_framework.settings import api_settings
 from rest_framework.urlpatterns import format_suffix_patterns
 
-from core.permissions import IsSuperuser, CsrfExemptSessionAuthentication
+from core.permissions import CsrfExemptSessionAuthentication, IsSuperuser
 
 Route = namedtuple("Route", ["url", "mapping", "name", "detail", "initkwargs"])
 DynamicRoute = namedtuple("DynamicRoute", ["url", "name", "detail", "initkwargs"])

@@ -9,5 +9,6 @@ class IsSuperuser(BasePermission):
 
 class CsrfExemptSessionAuthentication(SessionAuthentication):
     """Отключаем токены CSRF для API"""
+
     def enforce_csrf(self, request):
         return

@@ -3,21 +3,20 @@ from django.contrib.auth.forms import AuthenticationForm, PasswordChangeForm
 from django.contrib.auth.models import User
 from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import ensure_csrf_cookie
-
 from rest_framework import status
 from rest_framework.authentication import BaseAuthentication, SessionAuthentication
 from rest_framework.decorators import (
     api_view,
     authentication_classes,
     permission_classes,
-    schema,
     renderer_classes,
+    schema,
 )
 from rest_framework.permissions import IsAuthenticated
-from rest_framework.viewsets import ViewSet
 from rest_framework.renderers import JSONRenderer
 from rest_framework.response import Response
 from rest_framework.schemas import AutoSchema
+from rest_framework.viewsets import ViewSet
 
 from core.utils import error_as_dict
 from users.forms import UserRegistrationRequestForm
@@ -36,8 +35,10 @@ def sign_up(request):
     if registration_form.is_valid():
         registration_form.save()
         return Response({'status': True})
-    return Response({'message': error_as_dict(registration_form.errors)},
-                    status.HTTP_400_BAD_REQUEST)
+    return Response(
+        {'message': error_as_dict(registration_form.errors)},
+        status.HTTP_400_BAD_REQUEST,
+    )
 
 
 @api_view(['POST'])
@@ -56,8 +57,9 @@ def sign_in(request):
         login(request, user)
         return Response(user.profile.user_profile_as_dict)
     else:
-        return Response({'message': error_as_dict(auth_form.errors)},
-                        status.HTTP_400_BAD_REQUEST)
+        return Response(
+            {'message': error_as_dict(auth_form.errors)}, status.HTTP_400_BAD_REQUEST
+        )
 
 
 @api_view(['GET'])

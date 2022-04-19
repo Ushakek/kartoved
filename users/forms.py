@@ -1,9 +1,10 @@
-from django import forms
 import re
+
+from django import forms
 from django.contrib.auth.models import User
 
-from users.models import UserProfile
 from core.models import UserRegistrationRequest
+from users.models import UserProfile
 
 
 class UserRegistrationRequestForm(forms.ModelForm):
@@ -37,7 +38,10 @@ class UserRegistrationRequestForm(forms.ModelForm):
     def clean_email(self):
         email = self.cleaned_data.get('email')
         if User.objects.filter(email=email):
-            raise forms.ValidationError('Пользователь с таким почтовым адресом уже зарегистрирован', 'username_exist')
+            raise forms.ValidationError(
+                'Пользователь с таким почтовым адресом уже зарегистрирован',
+                'username_exist',
+            )
         return email
 
     def clean_phone(self):
@@ -46,7 +50,7 @@ class UserRegistrationRequestForm(forms.ModelForm):
         if UserProfile.objects.filter(phone=phone):
             raise forms.ValidationError(
                 'Пользователь с таким номером телефона уже зарегистрирован.',
-                'phone_exist'
+                'phone_exist',
             )
         return phone
 
@@ -60,11 +64,16 @@ class UserRegistrationRequestForm(forms.ModelForm):
         return password2
 
     def save(self, commit=True):
-        (registration_request, created) = UserRegistrationRequest.objects.update_or_create(
-            dict(username=self.cleaned_data['username'],
-                 userfullname=self.cleaned_data['userfullname'],
-                 email=self.cleaned_data['email'],
-                 password=self.cleaned_data['password1']),
-            phone=self.cleaned_data['phone']
+        (
+            registration_request,
+            created,
+        ) = UserRegistrationRequest.objects.update_or_create(
+            dict(
+                username=self.cleaned_data['username'],
+                userfullname=self.cleaned_data['userfullname'],
+                email=self.cleaned_data['email'],
+                password=self.cleaned_data['password1'],
+            ),
+            phone=self.cleaned_data['phone'],
         )
         return registration_request

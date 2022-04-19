@@ -1,5 +1,5 @@
-from django.db import models
 from django.contrib.auth.models import User
+from django.db import models
 
 from core.custom import fields
 from users.models import UserProfile
@@ -36,20 +36,3 @@ class UserRegistrationRequest(models.Model):
 
     def __str__(self):
         return self.userfullname if self.userfullname else self.username
-
-
-# class UserRegistrationCode(models.Model):
-#     request = models.ForeignKey(UserRegistrationRequest,
-#                                 models.CASCADE,
-#                                 verbose_name='Запрос на регистрацию')
-#     date = models.DateTimeField('Дата')
-#     code = models.IntegerField('Код')
-#     sent = models.BooleanField('Отправлено', default=False)
-#     used = models.BooleanField('Использовано', default=False)
-#
-#     class Meta:
-#         verbose_name = 'Код для регистрации'
-#         verbose_name_plural = 'Коды для регистрации'
-#
-#     def __str__(self):
-#         return f'{self.request}'

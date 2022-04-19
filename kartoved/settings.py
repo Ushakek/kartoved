@@ -17,7 +17,7 @@ ROOT_DIR = Path().cwd().parent
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 env = Env(
-    DEBUG=(bool, False)
+    DEBUG=(bool, True)
 )
 env.read_env(BASE_DIR.joinpath('kartoved/.env'))
 
@@ -27,7 +27,7 @@ SECRET_KEY = env('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env('DEBUG')
 
-ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', default='*')
+ALLOWED_HOSTS = env.list('ALLOWED_HOSTS')
 
 
 # Application definition

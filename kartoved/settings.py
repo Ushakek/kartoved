@@ -9,16 +9,15 @@ https://docs.djangoproject.com/en/3.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
-from environ import Env
 from pathlib import Path
+
+from environ import Env
 
 ROOT_DIR = Path().cwd().parent
 # todo: Прочитать про base_dir и исправить
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-env = Env(
-    DEBUG=(bool, True)
-)
+env = Env(DEBUG=(bool, True))
 env.read_env(BASE_DIR.joinpath('kartoved/.env'))
 
 # SECURITY WARNING: keep the secret key used in production secret!
@@ -40,9 +39,21 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'drf_spectacular',
     'users',
     'core',
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+}
+
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'Kartoved API',
+    'DESCRIPTION': 'Скоро здесь появится описание',
+    'VERSION': '1.0.0',
+    'SERVE_INCLUDE_SCHEMA': False,
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

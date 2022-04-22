@@ -53,10 +53,18 @@ SPECTACULAR_SETTINGS = {
     'SWAGGER_UI_DIST': 'SIDECAR',
     'SWAGGER_UI_FAVICON_HREF': 'SIDECAR',
     'REDOC_DIST': 'SIDECAR',
+    'COMPONENT_SPLIT_REQUEST': True,
     'TITLE': 'Kartoved API',
     'DESCRIPTION': 'Скоро здесь появится описание',
     'VERSION': '1.0.0',
     'SERVE_INCLUDE_SCHEMA': False,
+    'SWAGGER_UI_SETTINGS': {
+        "deepLinking": True,
+        "persistAuthorization": True,
+        "displayOperationId": True,
+        "docExpansion": None,
+        "filter": True,
+    },
 }
 
 MIDDLEWARE = [

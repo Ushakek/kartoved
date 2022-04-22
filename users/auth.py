@@ -3,6 +3,7 @@ from django.contrib.auth.forms import AuthenticationForm, PasswordChangeForm
 from django.contrib.auth.models import User
 from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import ensure_csrf_cookie
+from drf_spectacular.utils import OpenApiParameter, OpenApiTypes, extend_schema
 from rest_framework import status
 from rest_framework.authentication import BaseAuthentication, SessionAuthentication
 from rest_framework.decorators import (
@@ -29,6 +30,18 @@ def __init__(request):
 
 
 @api_view(['POST'])
+@extend_schema(
+    parameters=[
+        OpenApiParameter('phone', OpenApiTypes.STR, OpenApiParameter.QUERY),
+        OpenApiParameter('username', OpenApiTypes.STR, OpenApiParameter.QUERY),
+        OpenApiParameter(
+            'OpenApiParameter.QUERY', OpenApiTypes.STR, OpenApiParameter.QUERY
+        ),
+        OpenApiParameter('email', OpenApiTypes.STR, OpenApiParameter.QUERY),
+        OpenApiParameter('password1', OpenApiTypes.STR, OpenApiParameter.QUERY),
+        OpenApiParameter('password2', OpenApiTypes.STR, OpenApiParameter.QUERY),
+    ]
+)
 def sign_up(request):
     """Форма регистрации"""
     registration_form = UserRegistrationRequestForm(request.data)

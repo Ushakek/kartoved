@@ -6,4 +6,4 @@ from users.models import UserProfile
 
 @admin.register(UserProfile)
 class UserProfileAdmin(admin.ModelAdmin):
-    pass
+    list_display = ['full_name', 'user_status', 'available_for_work', 'phone']

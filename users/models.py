@@ -79,6 +79,10 @@ class UserProfile(models.Model):
         null=True,
     )
 
+    class Meta:
+        verbose_name = 'Профиль пользователя'
+        verbose_name_plural = 'Профили пользователей'
+
     @property
     def email(self) -> str:
         return self.user.email

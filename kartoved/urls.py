@@ -29,6 +29,7 @@ from core.service import ProjectDefaultRouter
 
 router = ProjectDefaultRouter('api')
 router.register('users')
+router.register('notes')
 
 urlpatterns = [
     path('admin/', admin.site.urls),

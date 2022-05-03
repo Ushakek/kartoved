@@ -1,3 +1,7 @@
 from django.contrib import admin
+from notes.models import ModelNotes
 
-# Register your models here.
+
+@admin.register(ModelNotes)
+class NotesAdmin(admin.ModelAdmin):
+    pass

@@ -3,6 +3,7 @@ django>=4.0.0<5.0.0
 djangorestframework>=3.0.0<4.0.0
 psycopg2==2.9.3
 django-environ>=0.0.1<1.0.0
+pillow>=9.0.0<10.0.0
 drf_spectacular
 drf_spectacular[sidecar]
 black

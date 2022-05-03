@@ -10,6 +10,9 @@ class NotesViewSet(BasicAuthMixin, ModelViewSet):
     """ViewSet для заметок"""
     serializer_class = NoteSerializer
     queryset = ModelNotes.objects.all()
+    
+    def create(self, request, *args, **kwargs):
+        return super(NotesViewSet, self).create(request, *args, **kwargs)
 
     def list(self, request, *args, **kwargs):
         user = request.user

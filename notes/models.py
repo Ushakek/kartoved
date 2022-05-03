@@ -19,6 +19,9 @@ class ModelNotes(models.Model):
                                      related_name='notes',
                                      verbose_name='Пользователь')
 
+    def __str__(self):
+        return self.coordinates
+
     class Meta:
         verbose_name = 'Заметка'
         verbose_name_plural = 'Заметки'

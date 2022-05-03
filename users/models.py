@@ -96,3 +96,6 @@ class UserProfile(models.Model):
             'birthday': self.birthday,
             'email': self.email,
         }
+
+    def __str__(self):
+        return self.phone

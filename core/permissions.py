@@ -1,5 +1,5 @@
 from rest_framework.authentication import SessionAuthentication
-from rest_framework.permissions import BasePermission
+from rest_framework.permissions import BasePermission, IsAuthenticated
 
 
 class IsSuperuser(BasePermission):
@@ -12,3 +12,8 @@ class CsrfExemptSessionAuthentication(SessionAuthentication):
 
     def enforce_csrf(self, request):
         return
+
+
+class BasicAuthMixin:
+    authentication_classes = (CsrfExemptSessionAuthentication,)
+    permission_classes = (IsAuthenticated,)

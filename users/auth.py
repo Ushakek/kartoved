@@ -68,7 +68,7 @@ def sign_in(request):
     if auth_form.is_valid():
         user = auth_form.get_user()
         login(request, user)
-        return Response(user.profile.user_profile_as_dict)
+        return Response(user.profile.user_profile_json())
     else:
         return Response(
             {'message': error_as_dict(auth_form.errors)}, status.HTTP_400_BAD_REQUEST

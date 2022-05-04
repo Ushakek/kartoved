@@ -15,9 +15,10 @@ Including another URLconf
 """
 from django.contrib import admin
 
-# from django.conf import settings
+from django.conf import settings
+
 # from django.contrib.staticfiles.urls import staticfiles_urlpatterns
-# from django.conf.urls.static import static
+from django.conf.urls.static import static
 from django.urls import include, path
 from drf_spectacular.views import (
     SpectacularAPIView,
@@ -31,16 +32,19 @@ router = ProjectDefaultRouter('api')
 router.register('users')
 router.register('notes')
 
-urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('api/', include(router.urls)),
-    path('schema/', SpectacularAPIView.as_view(), name='schema'),
-    path(
-        'swagger/',
-        SpectacularSwaggerView.as_view(url_name='schema'),
-        name='swagger-ui',
-    ),
-    path(
-        'schema/redoc/', SpectacularRedocView.as_view(url_name='schema'), name='redoc'
-    ),
-]
+urlpatterns = (
+    [
+        path('admin/', admin.site.urls),
+        path('api/', include(router.urls)),
+        path('schema/', SpectacularAPIView.as_view(), name='schema'),
+        path(
+            'swagger/',
+            SpectacularSwaggerView.as_view(url_name='schema'),
+            name='swagger-ui',
+        ),
+        path('ckeditor/', include('ckeditor_uploader.urls')),
+        path('djeym/', include('djeym.urls', namespace='djeym')),
+    ]
+    + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+    + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+)

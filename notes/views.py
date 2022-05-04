@@ -16,8 +16,6 @@ class NotesViewSet(BasicAuthMixin, ModelViewSet):
         return super(NotesViewSet, self).create(request, *args, **kwargs)
 
     def list(self, request, *args, **kwargs):
-        user = request.user
-        print(user)
         queryset = self.get_queryset()
         serializer = self.get_serializer(queryset, many=True)
         return Response(serializer.data)

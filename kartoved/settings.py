@@ -38,6 +38,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'imagekit',
+    'ckeditor',
+    'ckeditor_uploader',
+    'colorful',
+    'adminsortable',
+    'djeym',
     'rest_framework',
     'drf_spectacular',
     'drf_spectacular_sidecar',
@@ -45,12 +51,7 @@ INSTALLED_APPS = [
     'core',
     'notes',
     'work',
-    'imagekit',
-    'ckeditor',
-    'ckeditor_uploader',
-    'colorful',
-    'adminsortable',
-    'djeym',
+    'maps',
 ]
 
 REST_FRAMEWORK = {

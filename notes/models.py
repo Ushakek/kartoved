@@ -7,6 +7,7 @@ from utils.helpers import generate_upload_name
 class ModelNotes(models.Model):
     """Модель записок/заметок"""
 
+    name = models.CharField(verbose_name='Название', max_length=200)
     coordinates = models.CharField(
         verbose_name='Координаты', blank=True, max_length=200
     )

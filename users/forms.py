@@ -6,6 +6,8 @@ from django.contrib.auth.models import User
 from core.models import UserRegistrationRequest
 from users.models import UserProfile
 
+__all__ = ['UserRegistrationRequestForm']
+
 
 class UserRegistrationRequestForm(forms.ModelForm):
     """Форма валидации пользователя при регистрации"""

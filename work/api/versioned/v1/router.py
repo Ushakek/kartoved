@@ -1,13 +1,5 @@
-from django.urls import include, path
-
 from core.service import VersionDefaultRouter
-
+from work import views
 
 router = VersionDefaultRouter()
-router.path(
-    'auth/',
-    include(
-        [
-        ]
-    ),
-)
+router.register('', views.WorkViewSet, basename='work')

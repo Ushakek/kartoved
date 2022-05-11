@@ -17,6 +17,6 @@ class WorkViewSet(BasicAuthMixin, ModelViewSet):
 
     def list(self, request, *args, **kwargs):
         queryset = self.get_queryset()
-        queryset.filter(executor=request.user.profile)
+        queryset.filter(executor=request.user.profile, active=True)
         serializer = self.get_serializer(queryset, many=True)
         return Response(serializer.data)

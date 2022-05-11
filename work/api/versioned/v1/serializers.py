@@ -15,6 +15,7 @@ class ResponseWorkSerializer(serializers.ModelSerializer):
             'name',
             'task',
             'active',
+            'done',
             'type_work',
             'polygon',
             'polyline',

@@ -18,6 +18,7 @@ class WorkAdmin(admin.ModelAdmin):
                     'name',
                     'task',
                     'active',
+                    'done',
                     'type_work',
                     'polygon',
                     'polyline',

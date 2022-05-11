@@ -26,6 +26,7 @@ class WorkModel(models.Model):
         on_delete=models.CASCADE,
         related_name='work_polygon',
         verbose_name='Территория работ',
+        null=True,
         blank=True,
     )
     polyline = models.ForeignKey(
@@ -33,6 +34,7 @@ class WorkModel(models.Model):
         on_delete=models.CASCADE,
         related_name='work_polyline',
         verbose_name='Маршрут работ',
+        null=True,
         blank=True,
     )
     executor = models.ForeignKey(
@@ -50,6 +52,9 @@ class WorkModel(models.Model):
         verbose_name='Исполнение',
         blank=True,
     )
+
+    def __str__(self):
+        return self.name
 
     class Meta:
         verbose_name = 'Задание'

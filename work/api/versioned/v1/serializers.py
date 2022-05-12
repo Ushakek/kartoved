@@ -27,6 +27,7 @@ class ResponseWorkSerializer(serializers.ModelSerializer):
     class Meta:
         model = WorkModel
         fields = [
+            'id',
             'name',
             'task',
             'active',

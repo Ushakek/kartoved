@@ -1,19 +1,17 @@
+from djeym.models import Polygon, Polyline
 from rest_framework import serializers
 
 from notes.api.versioned.v1.serializers import NoteSerializer
 from work.models import WorkModel
-from djeym.models import Polygon, Polyline
 
 
 class PolygonSerializer(serializers.ModelSerializer):
-
     class Meta:
         model = Polygon
         fields = ['coordinates']
 
 
 class PolylineSerializer(serializers.ModelSerializer):
-
     class Meta:
         model = Polyline
         fields = ['coordinates']

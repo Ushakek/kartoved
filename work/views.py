@@ -16,7 +16,22 @@ class WorkViewSet(BasicAuthMixin, ModelViewSet):
         return super(WorkViewSet, self).create(request, *args, **kwargs)
 
     def list(self, request, *args, **kwargs):
+        query_params = self.validate()
         queryset = self.get_queryset()
-        queryset.filter(executor=request.user.profile, active=True)
+        queryset = queryset.filter(executor=request.user.profile, active=True)
+        if 'done' in query_params:
+            queryset = queryset.filter(done=query_params['done'])
         serializer = self.get_serializer(queryset, many=True)
         return Response(serializer.data)
+
+    def validate(self):
+        query_params = self.request.query_params
+        done = query_params.get('done', None)
+        params = {}
+        if done is not None:
+            if done in ('True', 'true', True):
+                params.update({'done': True})
+            elif done in ('False', 'false', False):
+                params.update({'done': False})
+
+        return params

@@ -17,7 +17,7 @@ class WorkModel(models.Model):
     name = models.CharField(verbose_name='Название работы', max_length=100)
     task = models.TextField(verbose_name='Задание на работу')
     active = models.BooleanField(verbose_name='Работа активна?', default=True)
-    done = models.BooleanField(verbose_name='Работа выполнена?', default=True)
+    done = models.BooleanField(verbose_name='Работа выполнена?', default=False)
     type_work = models.CharField(
         verbose_name='Тип работ', choices=TYPE_ROUTE_CHOICE, max_length=50
     )

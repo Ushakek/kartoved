@@ -14,6 +14,7 @@ class NoteSerializer(serializers.ModelSerializer):
     class Meta:
         model = ModelNotes
         fields = (
+            'id',
             'coordinates',
             'description',
             'photo',

@@ -38,6 +38,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'imagekit',
+    'ckeditor',
+    'ckeditor_uploader',
+    'colorful',
+    'adminsortable',
+    'djeym',
     'rest_framework',
     'drf_spectacular',
     'drf_spectacular_sidecar',
@@ -45,12 +51,6 @@ INSTALLED_APPS = [
     'core',
     'notes',
     'work',
-    'imagekit',
-    'ckeditor',
-    'ckeditor_uploader',
-    'colorful',
-    'adminsortable',
-    'djeym',
 ]
 
 REST_FRAMEWORK = {
@@ -91,7 +91,7 @@ ROOT_URLCONF = 'kartoved.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['templates/'],
+        'DIRS': [BASE_DIR/'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

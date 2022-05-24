@@ -32,8 +32,14 @@ class UserProfile(models.Model):
         default=WORKER,
         max_length=100,
     )
-    full_name = models.CharField(
-        'Полное имя',
+    first_name = models.CharField(
+        'Имя',
+        max_length=64,
+        blank=True,
+        default='',
+    )
+    second_name = models.CharField(
+        'Фамилия',
         max_length=64,
         blank=True,
         default='',

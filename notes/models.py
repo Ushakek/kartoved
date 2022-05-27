@@ -15,7 +15,7 @@ class ModelNotes(models.Model):
     description = models.TextField(verbose_name='Описание')
 
     photo = models.ImageField(
-        verbose_name='Фотографии объекта', upload_to=generate_upload_name
+        verbose_name='Фотографии объекта', upload_to=generate_upload_name, null=True, blank=True
     )
 
     user_profile = models.ForeignKey(

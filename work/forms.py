@@ -25,11 +25,6 @@ class WorkForm(forms.ModelForm):
                 )
         return cleaned_data
 
-    # def clean_type_work(self):
-
-    #     if polyline is not None and polygon is not None:
-    #         raise forms.ValidationError('Выберите только 1 тип')
-
     class Meta:
         model = WorkModel
         fields = (
@@ -40,5 +35,4 @@ class WorkForm(forms.ModelForm):
             'polyline',
             'type_work',
             'executor',
-            'execution',
         )

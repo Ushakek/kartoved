@@ -1,8 +1,9 @@
 from django.db import models
+from djeym.models import Placemark
 
 from users.models import UserProfile
-from work.models import WorkModel
 from utils.helpers import generate_upload_name
+from work.models import WorkModel
 
 
 class ModelNotes(models.Model):
@@ -16,7 +17,10 @@ class ModelNotes(models.Model):
     description = models.TextField(verbose_name='Описание')
 
     photo = models.ImageField(
-        verbose_name='Фотографии объекта', upload_to=generate_upload_name, null=True, blank=True
+        verbose_name='Фотографии объекта',
+        upload_to=generate_upload_name,
+        null=True,
+        blank=True,
     )
 
     user_profile = models.ForeignKey(
@@ -30,6 +34,14 @@ class ModelNotes(models.Model):
         on_delete=models.DO_NOTHING,
         related_name='work_notes',
         verbose_name='Работа',
+        null=True,
+        blank=True,
+    )
+    marker = models.ForeignKey(
+        to=Placemark,
+        on_delete=models.DO_NOTHING,
+        related_name='marker_notes',
+        verbose_name='Маркер на карте',
         null=True,
         blank=True,
     )

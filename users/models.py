@@ -95,6 +95,10 @@ class UserProfile(models.Model):
     def email(self) -> str:
         return self.user.email
 
+    @property
+    def full_name(self) -> str:
+        return f'{self.first_name} {self.second_name}'
+
     def user_profile_json(self) -> dict:
         return {
             'id': self.user.id,

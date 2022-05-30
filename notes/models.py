@@ -1,6 +1,7 @@
 from django.db import models
 
 from users.models import UserProfile
+from work.models import WorkModel
 from utils.helpers import generate_upload_name
 
 
@@ -15,7 +16,7 @@ class ModelNotes(models.Model):
     description = models.TextField(verbose_name='Описание')
 
     photo = models.ImageField(
-        verbose_name='Фотографии объекта', upload_to=generate_upload_name
+        verbose_name='Фотографии объекта', upload_to=generate_upload_name, null=True, blank=True
     )
 
     user_profile = models.ForeignKey(
@@ -23,6 +24,14 @@ class ModelNotes(models.Model):
         on_delete=models.DO_NOTHING,
         related_name='notes',
         verbose_name='Пользователь',
+    )
+    work = models.ForeignKey(
+        to=WorkModel,
+        on_delete=models.DO_NOTHING,
+        related_name='work_notes',
+        verbose_name='Работа',
+        null=True,
+        blank=True,
     )
 
     def __str__(self):

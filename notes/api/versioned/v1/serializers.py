@@ -15,10 +15,12 @@ class NoteSerializer(serializers.ModelSerializer):
         model = ModelNotes
         fields = (
             'id',
+            'name',
             'coordinates',
             'description',
             'photo',
             'user_profile',
+            'work',
         )
 
     @staticmethod

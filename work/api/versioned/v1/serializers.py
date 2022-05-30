@@ -2,6 +2,7 @@ from djeym.models import Polygon, Polyline
 from rest_framework import serializers
 
 from notes.api.versioned.v1.serializers import NoteSerializer
+from notes.models import ModelNotes
 from work.models import WorkModel
 
 
@@ -41,7 +42,8 @@ class ResponseWorkSerializer(serializers.ModelSerializer):
 
     @staticmethod
     def get_execution(obj):
-        serializer = NoteSerializer(obj.execution, many=True)
+        notes = ModelNotes.objects.filter(work=obj)
+        serializer = NoteSerializer(notes, many=True)
         return serializer.data
 
     @staticmethod

@@ -1,7 +1,6 @@
 from django.db import models
 from djeym.models import Polygon, Polyline
 
-from notes.models import ModelNotes
 from users.models import UserProfile
 
 __all__ = ['WorkModel']
@@ -47,11 +46,6 @@ class WorkModel(models.Model):
         on_delete=models.DO_NOTHING,
         related_name='worker',
         verbose_name='Исполнитель',
-    )
-    execution = models.ManyToManyField(
-        to=ModelNotes,
-        verbose_name='Исполнение',
-        blank=True,
     )
 
     def __str__(self):

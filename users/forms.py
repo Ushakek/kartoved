@@ -17,7 +17,7 @@ class UserRegistrationRequestForm(forms.ModelForm):
 
     class Meta:
         model = UserRegistrationRequest
-        fields = ('phone', 'username', 'userfullname', 'email')
+        fields = ('phone', 'username', 'first_name', 'second_name', 'email')
 
     @staticmethod
     def validate_phone(phone):
@@ -72,7 +72,8 @@ class UserRegistrationRequestForm(forms.ModelForm):
         ) = UserRegistrationRequest.objects.update_or_create(
             dict(
                 username=self.cleaned_data['username'],
-                userfullname=self.cleaned_data['userfullname'],
+                first_name=self.cleaned_data['first_name'],
+                second_name=self.cleaned_data['second_name'],
                 email=self.cleaned_data['email'],
                 password=self.cleaned_data['password1'],
             ),

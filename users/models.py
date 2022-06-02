@@ -103,7 +103,8 @@ class UserProfile(models.Model):
         return {
             'id': self.user.id,
             'username': self.user.username,
-            'full_name': self.full_name,
+            'first_name': self.first_name,
+            'second_name': self.second_name,
             'phone': self.phone,
             'birthday': self.birthday,
             'email': self.email,

@@ -112,18 +112,12 @@ WSGI_APPLICATION = 'kartoved.wsgi.application'
 
 DATABASES = {
     'default': {
-        # 'ENGINE': env('SQL_ENGINE', default='django.db.backends.sqlite3'),
         'ENGINE': env('SQL_ENGINE'),
-        # 'NAME': env('SQL_DATABASE', default=Path.joinpath(BASE_DIR, 'db.sqlite3')),
         'NAME': env('SQL_DATABASE'),
         'USER': env('SQL_USER'),
-        # 'USER': env('SQL_USER', default='kartoved'),
-        # 'PASSWORD': env('SQL_PASSWORD', default='123'),
         'PASSWORD': env('SQL_PASSWORD'),
         'HOST': env('SQL_HOST'),
-        # 'HOST': env('SQL_HOST', default='localhost'),
         'PORT': env('SQL_PORT'),
-        # 'PORT': env('SQL_PORT', default=''),
     }
 }
 

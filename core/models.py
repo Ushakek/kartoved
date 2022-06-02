@@ -7,7 +7,8 @@ from users.models import UserProfile
 
 class UserRegistrationRequest(models.Model):
     username = models.CharField('Имя', max_length=30)
-    userfullname = fields.CharFieldStripped('ФИО', max_length=64)
+    first_name = models.CharField('Имя', max_length=64, blank=True, null=True)
+    second_name = models.CharField('Фамилия', max_length=64, blank=True, null=True)
     email = models.EmailField()
     phone = models.CharField('Телефон', max_length=12)
     password = fields.CharFieldStripped('Пароль', max_length=255)
@@ -15,6 +16,10 @@ class UserRegistrationRequest(models.Model):
     class Meta:
         verbose_name = 'Запрос на регистрацию'
         verbose_name_plural = 'Запросы на регистрацию'
+
+    @property
+    def userfullname(self):
+        return f'{self.first_name} {self.second_name}'
 
     def register(self):
         user = User(
@@ -25,7 +30,8 @@ class UserRegistrationRequest(models.Model):
         user.save()
         user_profile = UserProfile(
             user=user,
-            full_name=self.userfullname,
+            first_name=self.first_name,
+            second_name=self.second_name,
             phone=self.phone,
         )
         user_profile.save()

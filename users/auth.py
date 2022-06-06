@@ -55,7 +55,7 @@ def sign_up(request):
 
 
 @api_view(['POST'])
-# @renderer_classes([JSONRenderer])
+@renderer_classes([JSONRenderer])
 def sign_in(request):
     """Аутентификация пользователя"""
     if len(request.POST) > 0:

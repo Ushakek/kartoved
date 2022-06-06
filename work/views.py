@@ -31,7 +31,7 @@ class WorkViewSet(BasicAuthMixin, ModelViewSet):
         if done is not None:
             if done in ('True', 'true', True):
                 params.update({'done': True})
-            elif done in ('False', 'false', False):
+            else:
                 params.update({'done': False})
 
         return params

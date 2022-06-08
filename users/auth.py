@@ -80,7 +80,11 @@ def sign_in(request):
 @permission_classes([IsAuthenticated])
 def sign_out(request):
     if request.user.is_authenticated:
-        logout(request)
+        try:
+            logout(request)
+        except Exception:
+            return Response({'sign_out': 'non authenticated'}, status=status.HTTP_401_UNAUTHORIZED)
+
         return Response({'sign_out': True})
     else:
-        return Response({'sign_out': 'non authenticated'})
+        return Response({'sign_out': 'non authenticated'}, status=status.HTTP_401_UNAUTHORIZED)

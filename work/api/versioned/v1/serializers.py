@@ -6,6 +6,7 @@ from notes.models import ModelNotes
 from work.models import WorkModel
 
 
+# todo: Подумать, нужны ли эти сериализаторы
 class PolygonSerializer(serializers.ModelSerializer):
     class Meta:
         model = Polygon
@@ -22,8 +23,7 @@ class ResponseWorkSerializer(serializers.ModelSerializer):
     """Сериализация модели работы"""
 
     execution = serializers.SerializerMethodField()
-    polygon = serializers.SerializerMethodField()
-    polyline = serializers.SerializerMethodField()
+    coordinates = serializers.SerializerMethodField()
 
     class Meta:
         model = WorkModel
@@ -34,8 +34,7 @@ class ResponseWorkSerializer(serializers.ModelSerializer):
             'active',
             'done',
             'type_work',
-            'polygon',
-            'polyline',
+            'coordinates',
             'executor',
             'execution',
         ]
@@ -47,17 +46,8 @@ class ResponseWorkSerializer(serializers.ModelSerializer):
         return serializer.data
 
     @staticmethod
-    def get_polygon(obj):
+    def get_coordinates(obj):
         if obj.polygon is not None:
-            serializer = PolygonSerializer(obj.polygon)
-            return serializer.data
+            return obj.polygon.coordinates
         else:
-            return None
-
-    @staticmethod
-    def get_polyline(obj):
-        if obj.polyline is not None:
-            serializer = PolylineSerializer(obj.polyline)
-            return serializer.data
-        else:
-            return None
+            return obj.polyline.coordinates
